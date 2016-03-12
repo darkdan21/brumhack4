@@ -1,23 +1,29 @@
 $(document).ready(function () {
 
-    var ws = new WebSocket("ws://drunkdrivingsimulator.com/control");
+    var ws = new WebSocket("wss://drunkdrivingsimulator.com/control");
     var rotation;
 
     function devicemotion(e) {
         rotation = e.originalEvent.accelerationIncludingGravity.y / 10;
     }
+
     $(window).bind('devicemotion', devicemotion);
 
-    function sendRotation(){
+    function sendRotation() {
         ws.send("1:" + rotation);
     }
 
-    setInterval(sendRotation(), 10);
-});
+    ws.onopen = function () {
+        setInterval(sendRotation(), 10)
+    };
 
-function brake(){
-    ws.send("2:0")
-}
-function accelerate(){
-    ws.send("3:0")
-}
+    $('#brake').click(function () {
+        ws.send("2:0")
+    });
+
+    $('#accelerate').click(function () {
+        ws.send("3:0")
+    });
+
+
+});
