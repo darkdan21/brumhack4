@@ -12,7 +12,7 @@ $(document).ready(function () {
 
 
     window.setInterval(function () {
-        if (abs(rotation / rotationnew) < 0.1) {
+        if (abs(rotation / rotationnew) > 0.001) {
             rotation = rotationnew;
             ws.send("1:" + rotationnew);
             console.log("Am I running?");
