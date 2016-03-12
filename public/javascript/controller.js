@@ -10,10 +10,9 @@ $(document).ready(function () {
     $(window).bind('devicemotion', devicemotion);
 
     function sendRotation() {
+        setInterval(sendRotation,100);
         ws.send("1:" + rotation);
     }
-
-        setInterval(sendRotation(), 10);
 
     $('#brake').click(function () {
         ws.send("2:0")
