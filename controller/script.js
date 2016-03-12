@@ -2,9 +2,20 @@ $(document).ready(function () {
 
     function handleOrientation(event) {
         console.log(event);
-        var alpha = event.alpha;
+        var alpha = event.originalEvent.alpha;
 
-        $('#alpha').text("Alpha: " + alpha);
+
+        $('#up').css({
+            '-webkit-transform': 'rotate(' + alpha + 'deg)',
+            '-moz-transform': 'rotate(' + alpha + 'deg)',
+            '-ms-transform': 'rotate(' + alpha + 'deg)',
+            'transform': 'rotate(' + alpha + 'deg)'
+        });
+
+
+        $('#alpha').text(alpha);
+
+
     }
 
     $(window).bind('deviceorientation', handleOrientation);
