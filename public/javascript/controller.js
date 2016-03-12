@@ -12,8 +12,11 @@ $(document).ready(function () {
 
 
     window.setInterval(function () {
-        if (Math.abs(rotation - rotationnew) > 0.001) {
+        if (Math.abs(rotation - rotationnew) > 1) {
             rotation = rotationnew;
+            if(rotation> 15){
+                rotation = 15;
+            }
             ws.send("1:" + rotationnew);
             console.log("Am I running?");
         }
