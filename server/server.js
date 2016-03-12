@@ -14,6 +14,7 @@ app.get('/viewer/:id', function(req, res){
 
 // Handle controller
 app.get('/controller/:id', function(req, res){
+    res.sendFile('html/controller.html');
 });
 
 
