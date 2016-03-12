@@ -1,5 +1,22 @@
-#up{
-    height:200px;
-    width:20px;
-    border: black 1px solid;
+body{
+    margin: 0;
+}
+#brake{
+    background-color: red;
+}
+#accelerate{
+    background-color: green;
+}
+
+.inner{
+    border: solid grey 1px;
+    margin: 4px;
+    border-radius: 4%;
+    height: calc(100% - 10px);
+}
+
+.button{
+    display: inline-block;
+    width: 50%;
+    height: 100%;
 }

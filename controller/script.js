@@ -1,21 +1,22 @@
 $(document).ready(function () {
 
+    var rotation;
+
     function devicemotion(e) {
-        var rotation = e.originalEvent.accelerationIncludingGravity.y/100;
+        rotation = e.originalEvent.accelerationIncludingGravity.y / 10;
+    }
+    $(window).bind('devicemotion', devicemotion);
 
-
-        $('#up').css({
-            '-webkit-transform': 'rotate(' + rotation + 'deg)',
-            '-moz-transform': 'rotate(' + rotation + 'deg)',
-            '-ms-transform': 'rotate(' + rotation + 'deg)',
-            'transform': 'rotate(' + rotation + 'deg)'
-        });
-
-
-        $('#alpha').text(rotation);
-
-
+    function sendRotation(){
+        console.log("rotation: " + rotation);
     }
 
-    $(window).bind('devicemotion', devicemotion);
+    setInterval(sendRotation(), 10);
 });
+
+function brake(){
+    console.log("brake")
+}
+function accelerate(){
+    console.log("accelerate")
+}
