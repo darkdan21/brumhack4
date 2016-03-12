@@ -1,22 +1,21 @@
 $(document).ready(function () {
 
-    function handleOrientation(event) {
-        console.log(event);
-        var alpha = event.originalEvent.alpha;
+    function devicemotion(e) {
+        var rotation = e.originalEvent.accelerationIncludingGravity.y/100;
 
 
         $('#up').css({
-            '-webkit-transform': 'rotate(' + alpha + 'deg)',
-            '-moz-transform': 'rotate(' + alpha + 'deg)',
-            '-ms-transform': 'rotate(' + alpha + 'deg)',
-            'transform': 'rotate(' + alpha + 'deg)'
+            '-webkit-transform': 'rotate(' + rotation + 'deg)',
+            '-moz-transform': 'rotate(' + rotation + 'deg)',
+            '-ms-transform': 'rotate(' + rotation + 'deg)',
+            'transform': 'rotate(' + rotation + 'deg)'
         });
 
 
-        $('#alpha').text(alpha);
+        $('#alpha').text(rotation);
 
 
     }
 
-    $(window).bind('deviceorientation', handleOrientation);
+    $(window).bind('devicemotion', devicemotion);
 });
