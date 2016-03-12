@@ -9,10 +9,11 @@ $(document).ready(function () {
 
     $(window).bind('devicemotion', devicemotion);
 
-    function sendRotation() {
-        setInterval(sendRotation,100);
+
+        window.setInterval(function(){
         ws.send("1:" + rotation);
-    }
+        console.log("Am I running?");
+    },100);
 
     $('#brake').click(function () {
         ws.send("2:0")
