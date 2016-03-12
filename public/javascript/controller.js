@@ -13,9 +13,7 @@ $(document).ready(function () {
         ws.send("1:" + rotation);
     }
 
-    ws.onopen = function () {
-        setInterval(sendRotation(), 10)
-    };
+        setInterval(sendRotation(), 10);
 
     $('#brake').click(function () {
         ws.send("2:0")
