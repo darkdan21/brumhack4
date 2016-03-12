@@ -2,18 +2,22 @@ $(document).ready(function () {
 
     var ws = new WebSocket("wss://drunkdrivingsimulator.com/control");
     var rotation;
+    var rotationnew;
 
     function devicemotion(e) {
-        rotation = e.originalEvent.accelerationIncludingGravity.y / 10;
+        rotationnew = e.originalEvent.accelerationIncludingGravity.y;
     }
 
     $(window).bind('devicemotion', devicemotion);
 
 
-        window.setInterval(function(){
-        ws.send("1:" + rotation);
-        console.log("Am I running?");
-    },100);
+    window.setInterval(function () {
+        if (abs(rotation / rotationnew) < 0.1) {
+            rotation = rotationnew;
+            ws.send("1:" + rotationnew);
+            console.log("Am I running?");
+        }
+    }, 100);
 
     $('#brake').click(function () {
         ws.send("2:0")
