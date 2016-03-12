@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     var ws = new WebSocket("wss://drunkdrivingsimulator.com/control");
-    var rotation;
+    var rotation = 0;
     var rotationnew;
 
     function devicemotion(e) {
@@ -12,7 +12,7 @@ $(document).ready(function () {
 
 
     window.setInterval(function () {
-        if (abs(rotation / rotationnew) > 0.001) {
+        if (abs(rotation - rotationnew) > 0.001) {
             rotation = rotationnew;
             ws.send("1:" + rotationnew);
             console.log("Am I running?");
