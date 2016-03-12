@@ -1,9 +1,8 @@
 var express = require('express'),
-    https = require('https'),
     http = require('http');
 
 var app = express();
-var options = {};
+var server = http.createServer(app).listen(8080);
 
 // Serve static content
 app.use(express.static('public'));
@@ -22,5 +21,3 @@ app.get('/viewer/:id', function(req, res){
 app.get('/controller/:id', function(req, res){
 });
 
-http.createServer(app).listen(8080);
-https.createServer(options, app).listen(443);
