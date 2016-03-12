@@ -14,19 +14,30 @@ $(document).ready(function () {
     window.setInterval(function () {
         if (Math.abs(rotation - rotationnew) > 1) {
             rotation = rotationnew;
-            if(rotation> 15){
+            if(rotation > 15) {
                 rotation = 15;
+            }
+            if(rotation < -15){
+                rotation =- 15;
             }
             ws.send("1:" + rotationnew);
             console.log("Am I running?");
         }
     }, 100);
 
-    $('#brake').click(function () {
-        ws.send("2:0")
+    $('#accelerate').onmousedown(function () {
+        ws.send("2:1")
     });
 
-    $('#accelerate').click(function () {
-        ws.send("3:0")
+    $('#brake').onmousedown(function () {
+        ws.send("3:1")
+    });
+
+    $('#accelerate').onmouseup(function () {
+        ws.send("2:1")
+    });
+
+    $('#brake').onmouseup(function () {
+        ws.send("3:1")
     });
 });
