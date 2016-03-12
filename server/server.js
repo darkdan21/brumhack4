@@ -13,12 +13,6 @@ var wss = new ws.Server({
 // Serve static content
 app.use(express.static('public'));
 
-// Redirect to HTTPS
-app.all('*', function (req, res, next) {
-    if (req.secure) return next();
-    res.redirect('https://' + req.hostname + req.url);
-});
-
 // Handle Viewer
 app.get('/viewer/:id', function(req, res){
 });
