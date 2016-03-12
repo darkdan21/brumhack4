@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    var ws = new WebSocket("ws://drunkdrivingsimulator.com/control");
     var rotation;
 
     function devicemotion(e) {
@@ -8,15 +9,15 @@ $(document).ready(function () {
     $(window).bind('devicemotion', devicemotion);
 
     function sendRotation(){
-        console.log("rotation: " + rotation);
+        ws.send("1:" + rotation);
     }
 
     setInterval(sendRotation(), 10);
 });
 
 function brake(){
-    console.log("brake")
+    ws.send("2:0")
 }
 function accelerate(){
-    console.log("accelerate")
+    ws.send("3:0")
 }
