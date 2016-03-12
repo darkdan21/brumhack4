@@ -24,6 +24,4 @@ $(document).ready(function () {
     $('#accelerate').click(function () {
         ws.send("3:0")
     });
-
-
 });
