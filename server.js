@@ -4,6 +4,7 @@ var express = require('express'),
 
 var app = express();
 var server = http.createServer(app).listen(8080);
+var root = { root : __dirname };
 
 // Serve static content
 app.use(express.static('public'));
@@ -14,7 +15,7 @@ app.get('/viewer/:id', function(req, res){
 
 // Handle controller
 app.get('/controller/:id', function(req, res){
-    res.sendFile('html/controller.html');
+    res.sendFile('html/controller.html', root);
 });
 
 
