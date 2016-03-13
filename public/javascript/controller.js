@@ -1,3 +1,6 @@
+if (!window.DeviceOrientationEvent) {
+    document.body.innerText = "Your device doesn't support rotation. Please try a different device";
+} else
 $(document).ready(function () {
     var ws = new WebSocket("wss://drunkdrivingsimulator.com/control");
     var rotation = 0;
