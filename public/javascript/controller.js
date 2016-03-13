@@ -29,15 +29,15 @@ $(document).ready(function () {
         ws.send("2:1")
     });
 
-    $('#brake').mouseup(function () {
+    $('#brake').click(function () {
         ws.send("3:1")
     });
 
-    $('#accelerate').click(function () {
+    $('#accelerate').mouseup(function () {
         ws.send("2:0")
     });
 
     $('#brake').mouseup(function () {
-        ws.send("3:1")
+        ws.send("3:0")
     });
 });
