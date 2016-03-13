@@ -55,8 +55,9 @@ var sockSrv = net.createServer(function(socket) {
         switch (obj.type) {
             case 'id':
                 var id = obj.data;
-                idmap[id].viewsocket = socket;
-                viewsockmap[ws] = id;
+                console.log('view connected: '+ id);
+                idmap[id]['viewsocket'] = socket;
+                viewsockmap[socket] = id;
                 break;
         }
     });
@@ -74,15 +75,16 @@ wss.on('connection', function(ws) {
         switch (obj.type) {
             case 'id':
                 var id = obj.data;
-                idmap[id].socket = ws;
+                idmap[id] = {};
+                idmap[id]['socket'] = ws;
                 sockmap[ws] = id;
                 break;
             case 'rot':
             case 'acc':
             case 'brk':
                 var id = sockmap[ws];
-                if (idmap[id].viewsocket) {
-                    idmap[id].viewsocket.send(new Buffer(msg, 'binary'));
+                if (idmap[id]['viewsocket']) {
+                    idmap[id]['viewsocket'].write(msg);
                     console.log('sending: ' + msg);
                 }
                 break;
