@@ -7,7 +7,7 @@ $(document).ready(function () {
         rotation = e.originalEvent.accelerationIncludingGravity.y;
     });
 
-    ws.on('open', function () {
+    ws.onopen = function () {
         setInterval(function() {
             if (ws.readyState !== 1) return;
 
@@ -22,11 +22,11 @@ $(document).ready(function () {
             }
             send('rot', rotation);
         }, 100);
-    });
+    };
 
-    ws.on('message', function(msg) {
+    ws.onmessage = function(msg) {
         console.log('got: ' + msg);
-    });
+    };
 
     $('#brake').on('touchstart mousedown', function (e) {
         send('brk', 1);
