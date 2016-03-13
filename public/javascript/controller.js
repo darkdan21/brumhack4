@@ -25,11 +25,11 @@ $(document).ready(function () {
         }
     }, 100);
 
-    $('#accelerate').click(function () {
+    $('#accelerate').mousedown(function () {
         ws.send("2:1")
     });
 
-    $('#brake').click(function () {
+    $('#brake').mousedown(function () {
         ws.send("3:1")
     });
 
