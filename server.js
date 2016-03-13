@@ -81,7 +81,8 @@ wss.on('connection', function(ws) {
             case 'rot':
             case 'acc':
             case 'brk':
-                idmap.viewsocket.send(msg);
+                if (idmap.viewsocket)
+                    idmap.viewsocket.send(msg);
                 break;
         }
     });
