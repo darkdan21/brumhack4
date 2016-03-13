@@ -62,7 +62,7 @@ function getGame(req) {
     var id     = req.cookies.gameid,
         hash   = req.cookies.hash,
         exists = id && hash && typeof[id] != 'undefined' &&
-                 hashCode(id + idmap[id]) === hash;
+                 hashCode(id + idmap[id]) == hash;
     return {
         id: id,
         hash: hash,
