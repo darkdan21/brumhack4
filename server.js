@@ -12,6 +12,7 @@ app.use(express.static('public'));
 app.use(cookies());
 
 var idmap = {};
+var sockmap = {};
 
 app.get('/play', function(req, res){
     var mkid = function() { // Gets a random 8 char hex string
@@ -52,9 +53,27 @@ var wss = new ws.Server({
     server: server,
     path: '/control'
 });
-wss.on('connection', function connection(ws) {
+wss.on('connection', function(ws) {
+
     ws.on('message', function(msg) {
         console.log('received: %s', msg);
+        var obj = JSON.parse(msg);
+        switch (obj.type) {
+            case 'id':
+                var id = obj.data;
+                idmap[id].socket = ws;
+                sockmap[ws] = id;
+                break;
+            case 'rot':
+                break;
+            case 'acc':
+                break;
+            case 'brk':
+                break;
+        }
+    });
+    wss.on('close', function(e){
+        console.log('client closed ' + e);
     });
 });
 
