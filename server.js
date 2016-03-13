@@ -59,14 +59,14 @@ wss.on('connection', function connection(ws) {
 });
 
 function getGame(req) {
-    var id   = req.cookies.gameid,
-        hash = req.cookies.hash;
-
+    var id     = req.cookies.gameid,
+        hash   = req.cookies.hash,
+        exists = id && hash && typeof[id] != 'undefined' &&
+                 hashCode(id + idmap[id]) === hash;
     return {
         id: id,
         hash: hash,
-        exists: id && typeof idmap[id] !== 'undefined' &&
-                hash && typeof idmap[hash] !== 'undefined'
+        exists: exists
     };
 }
 
