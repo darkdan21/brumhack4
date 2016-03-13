@@ -55,7 +55,7 @@ wss.on('connection', function connection(ws) {
 });
 
 function noGame(req, res) {
-    return req.end('No active game with id ' + req.cookies.gameid);
+    return res.end('No active game with id ' + req.cookies.gameid);
 }
 
 function hashCode(str) {
