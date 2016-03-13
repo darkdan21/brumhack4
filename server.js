@@ -1,5 +1,6 @@
 var express = require('express'),
     http = require('http'),
+    net  = require('net'),
     ws = require('ws'),
     cookies = require('cookie-parser');
 
@@ -13,6 +14,7 @@ app.use(cookies());
 
 var idmap = {};
 var sockmap = {};
+var viewsockmap = {};
 
 app.get('/play', function(req, res){
     var mkid = function() { // Gets a random 8 char hex string
@@ -47,6 +49,19 @@ app.get('/controller', function(req, res){
 
     res.sendFile('html/controller.html', root);
 });
+var sockSrv = net.createServer(function(socket) {
+    console.log('connected');
+    socket.on('data', function(msg) {
+        var obj = JSON.parse(msg);
+        switch (obj.type) {
+            case 'id':
+                var id = obj.data;
+                idmap[id].viewsocket = ws;
+                viewsockmap[ws] = id;
+                break;
+        }
+    });
+}).listen(40372);
 
 // Handle controller input
 var wss = new ws.Server({
@@ -64,10 +79,9 @@ wss.on('connection', function(ws) {
                 sockmap[ws] = id;
                 break;
             case 'rot':
-                break;
             case 'acc':
-                break;
             case 'brk':
+                idmap.viewsocket.send(msg);
                 break;
         }
     });
