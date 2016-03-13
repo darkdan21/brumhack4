@@ -54,7 +54,6 @@ var wss = new ws.Server({
     path: '/control'
 });
 wss.on('connection', function(ws) {
-
     ws.on('message', function(msg) {
         console.log('received: %s', msg);
         var obj = JSON.parse(msg);
@@ -72,7 +71,7 @@ wss.on('connection', function(ws) {
                 break;
         }
     });
-    wss.on('close', function(e){
+    ws.on('close', function(e){
         console.log('client closed ' + e);
     });
 });
