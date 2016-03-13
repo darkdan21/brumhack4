@@ -22,7 +22,7 @@ app.get('/play', function(req, res){
     var secret = mkid() + mkid();
     var hash = hashCode(id + secret);
 
-    res.cookie('gameid', hash);
+    res.cookie('gameid', id);
     res.cookie('hash', hash);
     idmap[id] = secret;
 
