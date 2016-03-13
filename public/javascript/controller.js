@@ -25,19 +25,19 @@ $(document).ready(function () {
         }
     }, 100);
 
-    $('#accelerate').onmousedown(function () {
+    $('#accelerate').bind(onmousedown,function () {
         ws.send("2:1")
     });
 
-    $('#brake').onmousedown(function () {
+    $('#brake').bind(onmousedown,function () {
         ws.send("3:1")
     });
 
-    $('#accelerate').onmouseup(function () {
-        ws.send("2:1")
+    $('#accelerate').bind(onmouseup,function () {
+        ws.send("2:0")
     });
 
-    $('#brake').onmouseup(function () {
+    $('#brake').bind(onmouseup,function () {
         ws.send("3:1")
     });
 });
