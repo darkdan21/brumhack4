@@ -80,6 +80,7 @@ wss.on('connection', function(ws) {
             case 'rot':
             case 'acc':
             case 'brk':
+                var id = sockmap[ws];
                 if (idmap[id].viewsocket) {
                     idmap[id].viewsocket.send(new Buffer(msg, 'binary'));
                     console.log('sending: ' + msg);
