@@ -37,7 +37,7 @@ app.get('/viewer', function(req, res){
 app.get('/controller', function(req, res){
     var id = req.cookies.gameid;
     var hash = req.cookies.hash;
-    if (!id || !hash)
+    if (!id || !hash || typeof idmap[id] === 'undefined' || typeof idmap[hash] === 'undefined')
         return noGame(req, res);
 
     res.sendFile('html/controller.html', root);
@@ -55,6 +55,7 @@ wss.on('connection', function connection(ws) {
 });
 
 function noGame(req, res) {
+    // TODO: Add "New game" button
     return res.end('No active game with id ' + req.cookies.gameid);
 }
 
