@@ -26,7 +26,7 @@ app.get('/play', function(req, res){
     res.cookie('hash', hash);
     idmap[id] = secret;
 
-    res.redirect("/controller/" + id);
+    res.redirect("/controller");
 });
 
 // Handtle Viewer
