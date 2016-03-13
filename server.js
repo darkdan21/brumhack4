@@ -80,8 +80,10 @@ wss.on('connection', function(ws) {
             case 'rot':
             case 'acc':
             case 'brk':
-                if (idmap.viewsocket)
-                    idmap.viewsocket.send(new Buffer(msg, 'binary'));
+                if (idmap[id].viewsocket) {
+                    idmap[id].viewsocket.send(new Buffer(msg, 'binary'));
+                    console.log('sending: ' + msg);
+                }
                 break;
         }
     });
