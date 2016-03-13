@@ -46,11 +46,7 @@ $(document).ready(function () {
     });
 
     function send(event, data) {
-        if (ws.readyState === 1) {
-            ws.send({
-                type: event,
-                data: data
-            });
-        }
+        if (ws.readyState === 1)
+            ws.send(JSON.stringify({ type: event, data: data }));
     }
 });
