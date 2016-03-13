@@ -50,13 +50,12 @@ app.get('/controller', function(req, res){
     res.sendFile('html/controller.html', root);
 });
 var sockSrv = net.createServer(function(socket) {
-    console.log('connected');
     socket.on('data', function(msg) {
-        var obj = JSON.parse(msg);
+        var obj = JSON.parse(msg.toString('utf8').splice(0, -1));
         switch (obj.type) {
             case 'id':
                 var id = obj.data;
-                idmap[id].viewsocket = ws;
+                idmap[id].viewsocket = socket;
                 viewsockmap[ws] = id;
                 break;
         }
@@ -82,7 +81,7 @@ wss.on('connection', function(ws) {
             case 'acc':
             case 'brk':
                 if (idmap.viewsocket)
-                    idmap.viewsocket.send(msg);
+                    idmap.viewsocket.send(new Buffer(msg, 'binary'));
                 break;
         }
     });
