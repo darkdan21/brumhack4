@@ -11,7 +11,7 @@ $(document).ready(function () {
     });
 
     ws.onopen = function () {
-        send('id', $.cookie('gameid'));
+        send('id', Cookies.get('gameid'));
         setInterval(function() {
             if (ws.readyState !== 1) return;
 
