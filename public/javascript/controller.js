@@ -32,17 +32,17 @@ $(document).ready(function () {
         console.log('got: ' + msg);
     };
 
-    $('#brake').on('touchstart mousedown', function (e) {
+    $('#brake').on('touchstart', function (e) {
         send('brk', 1);
     });
-    $('#brake').on('touchend mouseup', function (e) {
+    $('#brake').on('touchend', function (e) {
         send('brk', 0);
     });
 
-    $('#accelerate').on('touchstart mousedown', function (e) {
+    $('#accelerate').on('touchstart', function (e) {
         send('acc', 1);
     });
-    $('#accelerate').on('touchend mouseup', function (e) {
+    $('#accelerate').on('touchend', function (e) {
         send('acc', 0);
     });
 
