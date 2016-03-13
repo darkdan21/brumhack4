@@ -11,7 +11,7 @@ var root = { root : __dirname };
 app.use(express.static('public'));
 app.use(cookies());
 
-var idmap = [];
+var idmap = {};
 
 app.get('/play', function(req, res){
     var mkid = function() { // Gets a random 8 char hex string
