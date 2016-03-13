@@ -19,7 +19,7 @@ app.get('/play', function(req, res){
         return Math.floor((1 + Math.random()) * 0x100000000)
             .toString(16).substring(1);
     };
-    var id = mkid();
+    var id = '12345678';//mkid();
     var secret = mkid() + mkid();
     var hash = hashCode(id + secret);
 
@@ -84,7 +84,8 @@ function getGame(req) {
     return {
         id: id,
         hash: hash,
-        exists: exists
+        exists: true
+        // exists: exists
     };
 }
 
